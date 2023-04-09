@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { BsSearch } from 'react-icons/bs';
 import css from './Searchbar.module.css';
