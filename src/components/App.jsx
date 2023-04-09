@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import css from './App.module.css';
 import { FetchApi } from 'servises/pixabayAPI';
 import { toast, ToastContainer } from 'react-toastify';
 import { ImageGallery } from './ImageGallery/ImageGallery';
@@ -6,8 +7,6 @@ import { Searchbar } from './Searchbar/Searchbar';
 import { Modal } from 'components/Modal/Modal';
 import { Loader } from './Loader/Loader';
 import { Button } from './Button/Button';
-
-import css from './App.module.css';
 
 export class App extends Component {
   state = {
@@ -27,11 +26,10 @@ export class App extends Component {
     ) {
       // fetch()
       this.FetchImages();
-      // console.log(prevProps.searchText);
-      // console.log(this.props.searchText);
+      console.log(prevState.searchText);
+      console.log(this.state.searchText);
     }
   }
-
   FetchImages = async () => {
     const { searchText, page } = this.state;
     this.setState({ loading: true, totalHits: 0 });
@@ -55,7 +53,11 @@ export class App extends Component {
 
   handleFormSubmit = search => {
     console.log(search);
-    this.setState({ searchText: search, hits: [], page: 1 });
+    this.setState({ search, hits: [], page: 1 });
+  };
+
+  createSearchText = searchText => {
+    this.setState({ searchText });
   };
 
   onLoadMore = () => {
@@ -77,18 +79,20 @@ export class App extends Component {
 
   render() {
     const { hits, totalHits, largeImage, showModal, loading } = this.state;
-    const { handleFormSubmit, onLoadMore, createLargeImage, toggleModal } =
+    const { createSearchText, onLoadMore, createLargeImage, toggleModal } =
       this;
+
     return (
       <div className={css.App}>
-        <Searchbar createSearchText={handleFormSubmit} />
+        <Searchbar createSearchText={createSearchText} />
+
         <ImageGallery hits={hits} createLargeImage={createLargeImage} />
 
-        {loading && <Loader />}
         {showModal && (
           <Modal largeImageURL={largeImage} onClick={toggleModal} />
         )}
 
+        {loading && <Loader />}
         {totalHits > 12 && <Button onClick={onLoadMore} />}
         <ToastContainer position="top-center" autoClose={3000} theme="light" />
       </div>

@@ -10,7 +10,7 @@ export class Searchbar extends Component {
   };
 
   handleSearch = ({ currentTarget: { value } }) => {
-    this.setState({ search: value.toLowerCase() });
+    this.setState({ search: value });
   };
 
   handleSubmit = e => {
@@ -19,9 +19,10 @@ export class Searchbar extends Component {
     if (this.state.search.trim() === '') {
       return toast.error('Сформуйте запит для пошуку');
     }
-    this.props.createSearchText({ search: '' });
+    this.props.createSearchText(this.state.search);
     // console.log(this.state);
     // console.log(this.props);
+    // this.setState({ search: '' });
   };
 
   render() {
@@ -49,8 +50,8 @@ export class Searchbar extends Component {
 }
 
 // Searchbar.propTypes = {
-//   //   HandleSubmit: PropTypes.func.isRequired,
-//   //   handleSearch: PropTypes.func.isRequired,
-
-//   search: PropTypes.string.isRequired,
+//   HandleSubmit: PropTypes.func.isRequired,
+//   handleSearch: PropTypes.func.isRequired,
+//   value: PropTypes.string.isRequired,
+//   onSubmit: PropTypes.func.isRequired,
 // };
