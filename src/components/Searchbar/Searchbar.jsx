@@ -22,7 +22,6 @@ export class Searchbar extends Component {
     this.props.createSearchText({ search: '' });
     // console.log(this.state);
     // console.log(this.props);
-    // this.setState({ search: '' });
   };
 
   render() {
