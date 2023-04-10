@@ -17,7 +17,8 @@ export class Searchbar extends Component {
     e.preventDefault();
 
     if (this.state.search.trim() === '') {
-      return toast.error('Сформуйте запит для пошуку');
+      toast('Сформуйте запит для пошуку');
+      return;
     }
     this.props.createSearchText(this.state.search);
     // console.log(this.state);

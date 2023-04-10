@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import css from './App.module.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { FetchApi } from 'servises/pixabayAPI';
 import { toast, ToastContainer } from 'react-toastify';
 import { ImageGallery } from './ImageGallery/ImageGallery';
@@ -26,8 +27,8 @@ export class App extends Component {
     ) {
       // fetch()
       this.FetchImages();
-      console.log(prevState.searchText);
-      console.log(this.state.searchText);
+      // console.log(prevState.searchText);
+      // console.log(this.state.searchText);
     }
   }
   FetchImages = async () => {
@@ -35,8 +36,8 @@ export class App extends Component {
     this.setState({ loading: true, totalHits: 0 });
     try {
       const { hits, totalHits } = await FetchApi(searchText, page);
-      console.log(hits);
-      console.log(totalHits);
+      // console.log(hits);
+      // console.log(totalHits);
 
       this.setState(() => ({
         hits: [...this.state.hits, ...hits],
