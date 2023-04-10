@@ -51,13 +51,13 @@ export class App extends Component {
     }
   };
 
-  handleFormSubmit = search => {
-    console.log(search);
-    this.setState({ search, hits: [], page: 1 });
-  };
+  // handleFormSubmit = search => {
+  //   console.log(search);
+  //   this.setState({ search});
+  // };
 
   createSearchText = searchText => {
-    this.setState({ searchText });
+    this.setState({ searchText, hits: [], page: 1 });
   };
 
   onLoadMore = () => {
